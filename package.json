@@ -1,0 +1,52 @@
+{
+    "name": "tandem_apprenticeship",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A trivia game in support of my application to Tandem's apprenticeship program",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/philgresh/tandem_apprenticeship.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/philgresh/tandem_apprenticeship/issues"
+  },
+  "homepage": "https://github.com/philgresh/tandem_apprenticeship#readme",
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.5",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.0",
+    "web-vitals": "^0.2.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
