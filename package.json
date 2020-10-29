@@ -55,7 +55,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:css": "stylelint './src/**/*.js'"
+    "lint:css": "stylelint './src/**/*.js'",
+    "precommit": "stylelint './src/**/*.js' && git-precommit-checks"
   },
   "eslintConfig": {
     "extends": [
@@ -77,7 +78,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "git-precommit-checks"
+      "pre-commit": "npm run precommit"
     }
   },
   "git-precommit-checks": {
