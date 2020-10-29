@@ -4,8 +4,8 @@ import { shuffle, addCorrectToAnswers } from './logic';
 const isDev = process.env.NODE_ENV !== 'production';
 
 /**
- * Returns the question object of
- * @param {Number} id The unique ID of a questions.
+ * Returns the question object of a given ID.
+ * @param {Number} id The unique ID of a question.
  * @returns {Object} A question object
  */
 export const fetchQuestion = (id) => {
