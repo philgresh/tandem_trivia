@@ -2,7 +2,19 @@ $background-white: #fffdfc;
 $normal-color: #333;
 
 body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
   background-color: $background-white;
   color: $normal-color;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Space Mono', monospace;
+  line-height: 1.2;
+  margin: 0 0 0.75em;
+  font-weight: 400;
 }
