@@ -41,6 +41,8 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.5",
+    "git-precommit-checks": "^3.0.6",
+    "husky": "^4.3.0",
     "prettier": "^2.1.2",
     "react-test-renderer": "^17.0.1",
     "stylelint": "^13.7.2",
@@ -72,5 +74,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "git-precommit-checks"
+    }
+  },
+  "git-precommit-checks": {
+    "display": {
+      "notifications": true,
+      "offendingContent": true,
+      "rulesSummary": true,
+      "shortStats": true,
+      "verbose": true
+    }
   }
 }
