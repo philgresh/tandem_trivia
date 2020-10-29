@@ -11,7 +11,7 @@ const StyledButton = styled(Button)`
 `;
 
 const MenuButton = ({ color, ...rest }) => (
-  <StyledButton {...rest}>
+  <StyledButton {...rest} dataTestId="menu-button">
     <FontAwesomeIcon icon={faBars} color={color} />
   </StyledButton>
 );
