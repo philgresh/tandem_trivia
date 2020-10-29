@@ -1,16 +1,22 @@
 import * as React from 'react';
 import { getByTestId, render } from '@testing-library/react';
 import { act } from 'react-test-renderer';
-import Button from '../Button';
+import Button from '../components/atoms/Button';
 
 describe('Button atom', () => {
-  test('renders in the document and is clickable', () => {
-    const onClick = jest.fn();
+  const onClick = jest.fn();
+  let button;
 
+  beforeEach(() => {
     render(<Button onClick={onClick} />);
-    expect(getByTestId(document.documentElement, 'button')).toBeInTheDocument();
+    button = getByTestId(document.documentElement, 'button');
+  });
 
-    const button = document.querySelector('[data-testid="button"]');
+  test('renders in the document', () => {
+    expect(button).toBeInTheDocument();
+  });
+
+  test('is clickable', () => {
     act(() => {
       button.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     });

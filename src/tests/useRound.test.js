@@ -1,5 +1,10 @@
 // import { renderHook, act } from '@testing-library/react-hooks';
-import { initialScore, scoreReducer, CORRECT, INCORRECT } from './useRound';
+import {
+  initialScore,
+  scoreReducer,
+  CORRECT,
+  INCORRECT,
+} from '../components/logic/useRound';
 
 const questions = [
   {
@@ -20,14 +25,18 @@ const questions = [
   },
 ];
 
+const initialScoreExpectation = Object.freeze({
+  correct: 0,
+  incorrect: 0,
+  history: [],
+});
+
 const mockFetchQuestions = jest.fn();
 mockFetchQuestions.mockResolvedValue(questions);
 
 describe('scoreReducer', () => {
   test('initialScore is empty', () => {
-    expect(initialScore).toHaveProperty('correct', 0);
-    expect(initialScore).toHaveProperty('incorrect', 0);
-    expect(initialScore).toHaveProperty('history', []);
+    expect(initialScore).toMatchObject(initialScoreExpectation);
   });
 
   let newState = initialScore;
@@ -64,45 +73,6 @@ describe('scoreReducer', () => {
 
   test('empty action returns state to initialScore', () => {
     newState = scoreReducer(newState);
-    expect(initialScore).toHaveProperty('correct', 0);
-    expect(initialScore).toHaveProperty('incorrect', 0);
-    expect(initialScore).toHaveProperty('history', []);
+    expect(initialScore).toMatchObject(initialScoreExpectation);
   });
 });
-
-// describe('useRound hook', () => {
-//   const { result } = renderHook(() => useRound(questions));
-//   const { score, currQuestion, startNewGame, makeGuess } = result.current;
-
-//   test('startNewGame initializes a blank game with a currQuestion',
-// async () => {
-//     await act(async () => startNewGame());
-
-//     expect(result.current.score).toMatchObject({
-//       correct: 0,
-//       incorrect: 0,
-//       history: [],
-//     });
-//   });
-
-//   test('currQuestion is a valid question object', () => {
-//     expect(currQuestion).toMatchObject({
-//       id: 0,
-//       question: 'What was Tandem previous name?',
-//       incorrect: ['Tandem', 'Burger Shack', 'Extraordinary Humans'],
-//       correct: 'Devmynd',
-//     });
-//   });
-
-//   test('score returns initialScore', () => {
-//     expect(score).toMatchObject({
-//       correct: 0,
-//       incorrect: 0,
-//       history: [],
-//     });
-//   });
-
-//   describe('makeGuess', () => {
-//     test('making a guess', () => {});
-//   });
-// });

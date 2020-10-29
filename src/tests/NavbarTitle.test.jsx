@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { getByTestId, render } from '@testing-library/react';
-import NavbarTitle from '../NavbarTitle';
+import NavbarTitle from '../components/atoms/NavbarTitle';
 
 describe('NavbarTitle atom', () => {
   render(<NavbarTitle />);
