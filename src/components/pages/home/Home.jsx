@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { Navbar, Main } from '../../organisms';
 import { useRound } from '../../logic';
 
 const Home = () => {
@@ -7,22 +7,24 @@ const Home = () => {
   const { makeGuess, startNewGame, score, currQuestion } = useRound();
 
   const onSubmit = () => {
-    const { isCorrect } = makeGuess(input, currQuestion.id);
-    console.log(isCorrect);
+    makeGuess(input, currQuestion.id);
   };
 
   return (
-    <div>
-      Score: {score?.correct ?? 0}
-      <button onClick={startNewGame} type="button">
-        New Game
-      </button>
-      <div>{currQuestion && currQuestion?.question}</div>
-      <input onChange={(e) => setInput(e.target.value)} value={input} />
-      <button onClick={onSubmit} type="button">
-        Submit
-      </button>
-    </div>
+    <>
+      <Navbar />
+      <Main>
+        Score: {score?.correct ?? 0}
+        <button onClick={startNewGame} type="button">
+          New Game
+        </button>
+        <div>{currQuestion && currQuestion?.question}</div>
+        <input onChange={(e) => setInput(e.target.value)} value={input} />
+        <button onClick={onSubmit} type="button">
+          Submit
+        </button>
+      </Main>
+    </>
   );
 };
 
