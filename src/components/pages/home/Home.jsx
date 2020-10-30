@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navbar, Main } from '../../organisms';
+import { Navbar, Main, Footer, PageContainer } from '../../organisms';
 import { useRound } from '../../logic';
 
 const Home = () => {
@@ -11,8 +11,7 @@ const Home = () => {
   };
 
   return (
-    <>
-      <Navbar />
+    <PageContainer navBar={<Navbar />}>
       <Main>
         Score: {score?.correct ?? 0}
         <button onClick={startNewRound} type="button">
@@ -24,7 +23,8 @@ const Home = () => {
           Submit
         </button>
       </Main>
-    </>
+      <Footer />
+    </PageContainer>
   );
 };
 

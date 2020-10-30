@@ -1,0 +1,40 @@
+$background-white: #fffdfc;
+$normal-color: #333;
+$theme-color: #7a9c8a;
+
+@import './normalize.scss';
+@import './_mixins.scss';
+@import './_config.scss';
+@import './_media.scss';
+@import './page-container.scss';
+@import './navbar.scss';
+@import './main.scss';
+@import './footer.scss';
+
+$theme-color: get-good-contrast($theme-color, white);
+
+body {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  background-color: $background-white;
+  color: $normal-color;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Space Mono', monospace;
+  line-height: 1.2;
+  margin: 0 0 0.75em;
+  font-weight: 400;
+}
+
+button {
+  color: inherit;
+  background-color: transparent;
+  padding: 0.5rem;
+  border: none;
+  cursor: pointer;
+}

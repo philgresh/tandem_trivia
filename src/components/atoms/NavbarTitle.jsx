@@ -1,17 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const StyledTitle = styled.h1`
-  margin-bottom: 0;
-  padding: 0 1rem;
-`;
 
 const NavbarTitle = () => {
-  return (
-    <StyledTitle data-testid="navbar-title">
-      Practice Tandem Trivia!
-    </StyledTitle>
-  );
+  return <h1 data-testid="navbar-title">Practice Tandem Trivia!</h1>;
 };
 
 NavbarTitle.propTypes = {};

@@ -1,7 +1,4 @@
-import React from 'react';
 import { renderHook, act } from '@testing-library/react-hooks';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import useRound, {
   initialScore,
   scoreReducer,
@@ -33,16 +30,6 @@ const initialScoreExpectation = Object.freeze({
   incorrect: 0,
   history: [],
 });
-
-function setupTestComponent(...args) {
-  const returnVal = {};
-  function TestComponent() {
-    Object.assign(returnVal, useRound(...args));
-    return null;
-  }
-  render(<TestComponent />);
-  return returnVal;
-}
 
 const mockFetchQuestions = jest.fn();
 mockFetchQuestions.mockResolvedValue(questions);
