@@ -20,7 +20,6 @@
     "@fortawesome/react-fontawesome": "^0.1.12",
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
@@ -32,6 +31,7 @@
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^3.4.2",
+    "@testing-library/user-event": "^12.1.10",
     "babel-eslint": "^10.1.0",
     "enzyme": "^3.11.0",
     "eslint": "^7.12.1",

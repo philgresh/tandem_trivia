@@ -17,6 +17,7 @@ export const scoreReducer = (state, action) => {
   if (!action) return initialScore;
 
   const newHistoryObj = {
+    questionId: action.questionId,
     guess: action.guess,
     isCorrect: action.isCorrect,
   };
@@ -62,7 +63,7 @@ const useRound = (initialQuestions = []) => {
   /**
    * Fetches new questions and sets score to 0/0.
    */
-  const startNewGame = () =>
+  const startNewRound = () =>
     fetchQuestions().then((newQuestions) => {
       setQuestions(newQuestions);
       dispatch();
@@ -81,16 +82,27 @@ const useRound = (initialQuestions = []) => {
    */
   const makeGuess = (guess, questionId) => {
     const thisQuestionIdx = questions.findIndex((q) => q.id === questionId);
+
+    if (thisQuestionIdx === -1)
+      throw new Error(`'${questionId}' is not a valid question ID`);
+
     const thisQuestion = questions[thisQuestionIdx];
-    const isCorrect = thisQuestion.correct === guess;
+    const { correct } = thisQuestion;
+    const isCorrect = correct === guess;
     const type = isCorrect ? CORRECT : INCORRECT;
 
-    dispatch({ type, isCorrect, guess });
+    dispatch({ type, isCorrect, guess, questionId });
 
-    return { isCorrect, correct: thisQuestion.correct, guess };
+    return { isCorrect, correct, guess };
   };
 
-  return { score, currQuestion, makeGuess, startNewGame, nextQuestion };
+  return {
+    score,
+    currQuestion,
+    makeGuess,
+    startNewRound,
+    nextQuestion,
+  };
 };
 
 export default useRound;

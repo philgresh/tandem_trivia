@@ -4,7 +4,7 @@ import { useRound } from '../../logic';
 
 const Home = () => {
   const [input, setInput] = useState('');
-  const { makeGuess, startNewGame, score, currQuestion } = useRound();
+  const { makeGuess, startNewRound, score, currQuestion } = useRound();
 
   const onSubmit = () => {
     makeGuess(input, currQuestion.id);
@@ -15,7 +15,7 @@ const Home = () => {
       <Navbar />
       <Main>
         Score: {score?.correct ?? 0}
-        <button onClick={startNewGame} type="button">
+        <button onClick={startNewRound} type="button">
           New Game
         </button>
         <div>{currQuestion && currQuestion?.question}</div>
