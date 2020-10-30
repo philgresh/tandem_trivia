@@ -7,7 +7,11 @@ const StyledTitle = styled.h1`
 `;
 
 const NavbarTitle = () => {
-  return <StyledTitle>Practice Tandem Trivia!</StyledTitle>;
+  return (
+    <StyledTitle data-testid="navbar-title">
+      Practice Tandem Trivia!
+    </StyledTitle>
+  );
 };
 
 NavbarTitle.propTypes = {};

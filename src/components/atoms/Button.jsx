@@ -10,9 +10,12 @@ const StyledButton = styled.button`
   cursor: pointer;
 `;
 
-const Button = ({ styleProps, ...rest }) => (
-  <StyledButton styleProps={styleProps} {...rest} />
-);
+const Button = (props) => {
+  const { styleProps, dataTestId, ...rest } = props;
+  return (
+    <StyledButton styleProps={styleProps} {...rest} data-testid={dataTestId} />
+  );
+};
 
 Button.propTypes = {
   styleProps: PropTypes.shape({
@@ -20,6 +23,7 @@ Button.propTypes = {
     backgroundColor: PropTypes.string,
     padding: PropTypes.string,
   }),
+  dataTestId: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -28,6 +32,7 @@ Button.defaultProps = {
     backgroundColor: 'transparent',
     padding: '0.5rem',
   },
+  dataTestId: 'button',
 };
 
 export default Button;
