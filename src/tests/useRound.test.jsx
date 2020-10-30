@@ -162,4 +162,79 @@ describe('useRound', () => {
       ],
     });
   });
+
+  test('sending an invalid questionID throws an error', async () => {
+    await act(async () => {
+      result.current.startNewRound();
+    });
+
+    const { incorrect } = result.current.currQuestion;
+    const invalidID = 23423;
+    const incorrectGuess = incorrect[0];
+    let error = '';
+    await act(async () => {
+      result.current.makeGuess(incorrectGuess, invalidID).catch((err) => {
+        error = err.message;
+      });
+    });
+    expect(error).toEqual(`'${invalidID}' is not a valid question ID`);
+  });
+
+  test('sending an invalid guess acts as an incorrect guess', async () => {
+    await act(async () => {
+      result.current.startNewRound();
+    });
+
+    const { incorrect, id } = result.current.currQuestion;
+    const incorrectGuess = incorrect[0];
+
+    await act(async () => {
+      result.current.makeGuess(incorrectGuess, id);
+    });
+    expect(result.current.score).toMatchObject({
+      correct: 0,
+      incorrect: newScore.incorrect + 1,
+      history: [
+        {
+          questionId: id,
+          guess: incorrectGuess,
+          isCorrect: false,
+        },
+      ],
+    });
+  });
+
+  test('calling nextQuestion does not affect the score', async () => {
+    await act(async () => {
+      result.current.startNewRound();
+    });
+
+    const firstQuestion = result.current.currQuestion;
+    const { incorrect, id } = firstQuestion;
+    const incorrectGuess = incorrect[0];
+
+    await act(async () => {
+      result.current.makeGuess(incorrectGuess, id);
+    });
+
+    const currScore = {
+      correct: 0,
+      incorrect: newScore.incorrect + 1,
+      history: [
+        {
+          questionId: id,
+          guess: incorrectGuess,
+          isCorrect: false,
+        },
+      ],
+    };
+    expect(result.current.score).toMatchObject(currScore);
+
+    await act(async () => {
+      result.current.nextQuestion(0);
+    });
+
+    expect(result.current.currQuestion).not.toEqual(firstQuestion);
+    expect(result.current.score).toMatchObject(currScore);
+  });
 });

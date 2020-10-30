@@ -50,6 +50,12 @@ const useRound = (initialQuestions = []) => {
   const [questions, setQuestions] = useState(initialQuestions);
   const [currQuestion, setCurrQuestion] = useState(null);
 
+  /**
+   *
+   * @param {Number} thisQuestionIdx - The current question index.
+   * @returns {Object|String} nextQuestionObj - The next question object
+   *   (or constant "ROUND_OVER" if this was the final question).
+   */
   const nextQuestion = (thisQuestionIdx) => {
     const nextIdx = thisQuestionIdx + 1;
     const roundOver = nextIdx === questions.length;
@@ -80,12 +86,14 @@ const useRound = (initialQuestions = []) => {
    * @returns {Object:{isCorrect:Boolean, correct:String, guess:String}}
    * returnObj
    */
-  const makeGuess = (guess, questionId) => {
+  const makeGuess = async (guess, questionId) => {
     const thisQuestionIdx = questions.findIndex((q) => q.id === questionId);
 
-    if (thisQuestionIdx === -1)
-      throw new Error(`'${questionId}' is not a valid question ID`);
-
+    if (thisQuestionIdx === -1) {
+      return Promise.reject(
+        Error(`'${questionId}' is not a valid question ID`),
+      );
+    }
     const thisQuestion = questions[thisQuestionIdx];
     const { correct } = thisQuestion;
     const isCorrect = correct === guess;
@@ -93,7 +101,7 @@ const useRound = (initialQuestions = []) => {
 
     dispatch({ type, isCorrect, guess, questionId });
 
-    return { isCorrect, correct, guess };
+    return Promise.resolve({ isCorrect, correct, guess });
   };
 
   return {
