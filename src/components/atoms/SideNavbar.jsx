@@ -19,13 +19,14 @@ const Links = () =>
 const SideNavbar = ({ open, toggle }) => {
   return (
     <>
-      <div className={`sidenav ${open ? '' : 'hidden'}`}>
+      <div className={`sidenav ${open ? '' : 'hidden'}`} data-testid="sidenav">
         <Links />
       </div>
       <div
         className={`sidenav-background ${open ? '' : 'hidden'}`}
         onClick={toggle}
         role="presentation"
+        data-testid="sidenav-background"
       />
     </>
   );
