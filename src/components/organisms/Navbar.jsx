@@ -1,15 +1,18 @@
 import React from 'react';
-
-import { MenuButton, NavbarTitle } from '../atoms';
+import { MenuButton, NavbarTitle, SideNavbar } from '../atoms';
+import { useToggle } from '../logic';
 
 const Navbar = () => {
-  const onClick = () => {};
+  const [open, toggle] = useToggle();
 
   return (
-    <nav>
-      <MenuButton onClick={onClick} />
-      <NavbarTitle />
-    </nav>
+    <>
+      <nav>
+        <MenuButton onClick={toggle} />
+        <NavbarTitle />
+      </nav>
+      <SideNavbar open={open} toggle={toggle} />
+    </>
   );
 };
 

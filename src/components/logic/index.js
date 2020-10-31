@@ -1,4 +1,2 @@
-import useRound from './useRound';
-
-// eslint-disable-next-line import/prefer-default-export
-export { useRound };
+export { default as useRound } from './useRound';
+export { default as useToggle } from './useToggle';

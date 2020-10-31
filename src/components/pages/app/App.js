@@ -1,12 +1,20 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Navbar, Main, Footer, PageContainer } from '../../organisms';
 import Home from '../home';
 
 function App() {
   return (
     <Router>
-      {/* <Navbar /> */}
-      <Route exact path="/" component={Home} />
+      <PageContainer navBar={<Navbar />}>
+        <Main>
+          <Switch>
+            <Route exact path="/new-round" />
+            <Route path="/" component={Home} />
+          </Switch>
+        </Main>
+        <Footer />
+      </PageContainer>
     </Router>
   );
 }

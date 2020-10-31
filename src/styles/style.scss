@@ -4,14 +4,13 @@ $theme-color: #7a9c8a;
 
 @import './normalize.scss';
 @import './_mixins.scss';
-@import './_config.scss';
 @import './_media.scss';
 @import './page-container.scss';
 @import './navbar.scss';
 @import './main.scss';
 @import './footer.scss';
-
-$theme-color: get-good-contrast($theme-color, white);
+@import './sidenavbar.scss';
+@import './atoms.scss';
 
 body {
   font-family: 'Roboto', Helvetica, Arial, sans-serif;

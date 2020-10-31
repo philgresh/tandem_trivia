@@ -4,8 +4,37 @@ nav {
   margin-bottom: 1rem;
   padding: 1rem;
 
-  & > h1 {
-    margin-bottom: 0;
-    padding: 0 1rem;
+  & > .menu-button {
+    font-size: 1.2rem;
+
+    &:hover {
+      color: $theme-color;
+    }
+  }
+
+  & > a {
+    text-decoration: none;
+    color: inherit;
+
+    & > h1 {
+      margin-bottom: 0;
+      padding: 0 1rem;
+    }
+
+    &:visited {
+      color: inherit;
+    }
+  }
+
+  @include media('<=tablet') {
+    font-size: 0.8rem;
+
+    & > .menu-button {
+      font-size: 1rem;
+    }
+
+    & h1 {
+      font-size: 1rem;
+    }
   }
 }

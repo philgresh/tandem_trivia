@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 const PageContainer = ({ children, navBar }) => {
   return (
     <div id="page-container">
+      {navBar}
       <div id="content-wrap">
-        {navBar}
         <div id="spacer" />
         {children}
       </div>
