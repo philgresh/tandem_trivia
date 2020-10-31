@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-const useQuestion = (onSubmit, nextQuestion) => {
+const useQuestion = (_onSubmit, _nextQuestion) => {
   const [selected, setSelected] = useState('');
 
   const submit = () => {
-    console.log('submitting', selected);
+    // console.log('submitting', selected);
   };
 
   return { selected, setSelected, submit };

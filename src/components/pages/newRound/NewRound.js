@@ -1,16 +1,9 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { QuestionCard } from '../../organisms';
 import { useRound } from '../../logic';
 
-const NewRound = (props) => {
-  const {
-    score,
-    currQuestion,
-    makeGuess,
-    startNewRound,
-    nextQuestion,
-  } = useRound();
+const NewRound = () => {
+  const { currQuestion, makeGuess, startNewRound, nextQuestion } = useRound();
   useEffect(() => {
     startNewRound();
   }, []);
