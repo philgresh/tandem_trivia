@@ -2,6 +2,7 @@ import * as React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Navbar, Main, Footer, PageContainer } from '../../organisms';
 import Home from '../home';
+import NewRound from '../newRound/NewRound';
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <PageContainer navBar={<Navbar />}>
         <Main>
           <Switch>
-            <Route exact path="/new-round" />
+            <Route exact path="/new-round" component={NewRound} />
             <Route path="/" component={Home} />
           </Switch>
         </Main>

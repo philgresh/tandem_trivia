@@ -1,0 +1,87 @@
+.question-card {
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+  border: 1px solid #3330;
+  border-radius: 1rem;
+  padding: 1rem;
+  text-align: center;
+  -webkit-box-shadow: 0px 2px 5px 1px #3338;
+  -moz-box-shadow: 0px 2px 5px 1px #3338;
+  box-shadow: 0px 2px 5px 1px #3338;
+
+  & .answer-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    margin-bottom: 0.75rem;
+
+    $border-radius: 0.5rem;
+    $backgroundcolor: mistyrose;
+
+    & > button {
+      background-color: $backgroundcolor;
+      border-radius: $border-radius;
+      vertical-align: middle;
+      -webkit-box-shadow: 0px 2px 5px 0px #3338;
+      -moz-box-shadow: 0px 2px 5px 0px #3338;
+      box-shadow: 0px 2px 5px 0px #3338;
+      transform: perspective(1px) translateZ(0);
+      -webkit-transform: perspective(1px) translateZ(0);
+      position: relative;
+
+      &:before {
+        pointer-events: none;
+        content: '';
+        position: absolute;
+        border: 3px solid $backgroundcolor;
+        border-radius: $border-radius;
+        top: -16px;
+        right: -16px;
+        bottom: -16px;
+        left: -16px;
+        opacity: 0;
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-property: top, right, bottom, left;
+        transition-property: top, right, bottom, left;
+        transition-timing-function: ease-in-out;
+      }
+
+      &:hover::before,
+      &:focus::before,
+      &:active::before {
+        top: -8px;
+        right: -8px;
+        bottom: -8px;
+        left: -8px;
+        opacity: 1;
+      }
+
+      // &:before {
+      //   content: '';
+      //   position: absolute;
+      //   border-radius: 0.5rem;
+      //   z-index: -1;
+      //   left: 51%;
+      //   right: 51%;
+      //   bottom: 0;
+      //   background: #ff5543;
+      //   height: 4px;
+      //   -webkit-transition-property: left, right;
+      //   transition-property: left, right;
+      //   -webkit-transition-duration: 0.3s;
+      //   transition-duration: 0.3s;
+      //   -webkit-transition-timing-function: ease-out;
+      //   transition-timing-function: ease-out;
+      // }
+
+      // &:hover::before,
+      // &:focus::before,
+      // &:active::before {
+      //   left: 0;
+      //   right: 0;
+      // }
+    }
+  }
+}

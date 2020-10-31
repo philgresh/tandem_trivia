@@ -3,9 +3,9 @@ import { getByTestId, render, act } from '@testing-library/react';
 import { GuessButton } from '../components/atoms';
 
 describe('GuessButton atom', () => {
-  const onClick = jest.fn();
+  const onSubmit = jest.fn();
 
-  render(<GuessButton onClick={onClick} />);
+  render(<GuessButton onSubmit={onSubmit} />);
   let button = getByTestId(document.documentElement, 'guess-button');
 
   test('renders in the document', () => {
@@ -13,12 +13,12 @@ describe('GuessButton atom', () => {
   });
 
   test('is clickable', () => {
-    render(<GuessButton onClick={onClick} />);
+    render(<GuessButton onSubmit={onSubmit} />);
     button = getByTestId(document.documentElement, 'guess-button');
     act(() => {
       button.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     });
-    expect(onClick).toHaveBeenCalled();
+    expect(onSubmit).toHaveBeenCalled();
   });
 
   test('does not initially have "submitted" or "last-question" classNames', () => {
@@ -28,7 +28,7 @@ describe('GuessButton atom', () => {
   });
 
   test('has "submitted" classNames after submitting a guess', () => {
-    render(<GuessButton onClick={onClick} submitted />);
+    render(<GuessButton onSubmit={onSubmit} submitted />);
 
     button = getByTestId(document.documentElement, 'guess-button');
 
@@ -38,7 +38,7 @@ describe('GuessButton atom', () => {
   });
 
   test('has "last-question" classname after submitting the last question', () => {
-    render(<GuessButton onClick={onClick} submitted lastQuestion />);
+    render(<GuessButton onSubmit={onSubmit} submitted lastQuestion />);
 
     button = getByTestId(document.documentElement, 'guess-button');
 

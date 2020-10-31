@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Button from './Button';
 
-const GuessButton = ({ submitted, lastQuestion, onClick }) => {
+const GuessButton = ({ submitted, lastQuestion, onSubmit }) => {
   const classes = clsx(
     'guess-button',
     submitted && 'submitted',
@@ -12,14 +12,14 @@ const GuessButton = ({ submitted, lastQuestion, onClick }) => {
   let buttonText = submitted ? 'Next Question' : 'Submit Answer';
   if (lastQuestion) buttonText = 'See results!';
   return (
-    <Button dataTestId="guess-button" className={classes} onClick={onClick}>
+    <Button dataTestId="guess-button" className={classes} onClick={onSubmit}>
       {buttonText}
     </Button>
   );
 };
 
 GuessButton.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
   submitted: PropTypes.bool,
   lastQuestion: PropTypes.bool,
 };

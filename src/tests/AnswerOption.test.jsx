@@ -14,8 +14,17 @@ describe('AnswerOption atom', () => {
   const thisAnswer = question.correct;
   const correctGuess = question.correct;
   const incorrectGuess = question.incorrect[0];
+  const idx = 0;
+  const onChange = jest.fn();
 
-  render(<AnswerOption answer={thisAnswer} submitted={false} />);
+  render(
+    <AnswerOption
+      answer={thisAnswer}
+      submitted={false}
+      idx={idx}
+      onChange={onChange}
+    />,
+  );
   let answerOption = getByTestId(document.documentElement, 'answer-option');
 
   test('renders in the document', () => {
@@ -26,27 +35,62 @@ describe('AnswerOption atom', () => {
     expect(answerOption).toHaveTextContent(/\w/);
   });
 
-  test('does not initially have in/correct classnames', () => {
+  test('does not initially have selected, in/correct classnames', () => {
+    expect(answerOption).not.toHaveClass('selected');
+    expect(answerOption).not.toHaveClass('correct');
+    expect(answerOption).not.toHaveClass('incorrect');
+  });
+
+  test('has "selected" classname after clicking', () => {
+    render(
+      <AnswerOption
+        answer={thisAnswer}
+        guess={correctGuess}
+        idx={idx}
+        onChange={onChange}
+        selected
+      />,
+    );
+
+    answerOption = getByTestId(document.documentElement, 'answer-option');
+
+    expect(answerOption).toHaveClass('selected');
     expect(answerOption).not.toHaveClass('correct');
     expect(answerOption).not.toHaveClass('incorrect');
   });
 
   test('has "incorrect" classname after submitting an incorrect guess', () => {
     render(
-      <AnswerOption answer={thisAnswer} submitted guess={incorrectGuess} />,
+      <AnswerOption
+        answer={thisAnswer}
+        guess={incorrectGuess}
+        idx={idx}
+        onChange={onChange}
+        submitted
+        selected
+      />,
     );
 
     answerOption = getByTestId(document.documentElement, 'answer-option');
-
+    expect(answerOption).toHaveClass('selected');
     expect(answerOption).not.toHaveClass('correct');
     expect(answerOption).toHaveClass('incorrect');
   });
 
   test('has "correct" classname after submitting a correct guess', () => {
-    render(<AnswerOption answer={thisAnswer} submitted guess={correctGuess} />);
+    render(
+      <AnswerOption
+        answer={thisAnswer}
+        guess={correctGuess}
+        idx={idx}
+        onChange={onChange}
+        submitted
+        selected
+      />,
+    );
 
     answerOption = getByTestId(document.documentElement, 'answer-option');
-
+    expect(answerOption).toHaveClass('selected');
     expect(answerOption).toHaveClass('correct');
     expect(answerOption).not.toHaveClass('incorrect');
   });
