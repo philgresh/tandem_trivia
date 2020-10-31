@@ -1,16 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const StyledTitle = styled.h1`
-  margin-bottom: 0;
-  padding: 0 1rem;
-`;
+import { Link } from 'react-router-dom';
 
 const NavbarTitle = () => {
   return (
-    <StyledTitle data-testid="navbar-title">
-      Practice Tandem Trivia!
-    </StyledTitle>
+    <Link to="/">
+      <h1 data-testid="navbar-title">Practice Tandem Trivia!</h1>
+    </Link>
   );
 };
 

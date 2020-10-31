@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-brands-svg-icons": "^5.15.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.12",
     "@testing-library/jest-dom": "^5.11.5",
@@ -44,19 +45,14 @@
     "git-precommit-checks": "^3.0.6",
     "husky": "^4.3.0",
     "prettier": "^2.1.2",
-    "react-test-renderer": "^17.0.1",
-    "stylelint": "^13.7.2",
-    "stylelint-config-recommended": "^3.0.0",
-    "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-processor-styled-components": "^1.10.0"
+    "react-test-renderer": "^17.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:css": "stylelint './src/**/*.js'",
-    "precommit:test": "CI=true npm run test"
+    "precommit:test": "CI=true node_modules/.bin/react-scripts test --onlyChanged"
   },
   "eslintConfig": {
     "extends": [
@@ -78,7 +74,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint:css && npm run precommit:test && git-precommit-checks"
+      "pre-commit": "npm run precommit:test && git-precommit-checks"
     }
   },
   "git-precommit-checks": {

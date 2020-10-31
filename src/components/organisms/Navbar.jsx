@@ -1,24 +1,18 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
-import { MenuButton, NavbarTitle } from '../atoms';
-
-const StyledNav = styled.nav`
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-  padding: 1rem;
-`;
+import { MenuButton, NavbarTitle, SideNavbar } from '../atoms';
+import { useToggle } from '../logic';
 
 const Navbar = () => {
-  const onClick = () => {};
+  const [open, toggle] = useToggle();
 
   return (
-    <StyledNav>
-      <MenuButton onClick={onClick} />
-      <NavbarTitle />
-    </StyledNav>
+    <>
+      <nav>
+        <MenuButton onClick={toggle} />
+        <NavbarTitle />
+      </nav>
+      <SideNavbar open={open} toggle={toggle} />
+    </>
   );
 };
 

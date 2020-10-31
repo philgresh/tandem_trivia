@@ -6,14 +6,17 @@ const StyledButton = styled.button`
   color: ${({ styleProps }) => styleProps.color};
   background-color: ${({ styleProps }) => styleProps.backgroundColor};
   padding: ${({ styleProps }) => styleProps.padding};
-  border: none;
-  cursor: pointer;
 `;
 
 const Button = (props) => {
   const { styleProps, dataTestId, ...rest } = props;
   return (
-    <StyledButton styleProps={styleProps} {...rest} data-testid={dataTestId} />
+    <StyledButton
+      styleProps={styleProps}
+      {...rest}
+      data-testid={dataTestId}
+      className={dataTestId}
+    />
   );
 };
 
