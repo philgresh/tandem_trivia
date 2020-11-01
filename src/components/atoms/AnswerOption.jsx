@@ -1,23 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
-
-const CorrectOrIncorrectIcon = ({ selected, isCorrect }) => {
-  if (!selected) return null;
-  if (isCorrect) return <FontAwesomeIcon icon={faCheck} color="inherit" />;
-  return <FontAwesomeIcon icon={faTimes} color="inherit" />;
-};
-
-CorrectOrIncorrectIcon.propTypes = {
-  isCorrect: PropTypes.bool.isRequired,
-  selected: PropTypes.bool,
-};
-
-CorrectOrIncorrectIcon.defaultProps = {
-  selected: false,
-};
+import CorrectOrIncorrectIcon from './CorrectOrIncorrectIcon';
 
 const AnswerOption = ({ answer, selected, isCorrect, submitted, onChange }) => {
   const classes = clsx(
@@ -34,7 +18,7 @@ const AnswerOption = ({ answer, selected, isCorrect, submitted, onChange }) => {
       onClick={onChange}
       disabled={submitted}
     >
-      {submitted && (
+      {submitted && selected && (
         <CorrectOrIncorrectIcon selected={selected} isCorrect={isCorrect} />
       )}
       {answer}

@@ -107,6 +107,7 @@ const useRound = (initialQuestions = []) => {
   return {
     score,
     currQuestion,
+    questions,
     makeGuess,
     startNewRound,
     nextQuestion,

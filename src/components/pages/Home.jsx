@@ -9,19 +9,7 @@ const Home = () => {
     makeGuess(input, currQuestion.id);
   };
 
-  return (
-    <>
-      Score: {score?.correct ?? 0}
-      <button onClick={startNewRound} type="button">
-        New Game
-      </button>
-      <div>{currQuestion && currQuestion?.question}</div>
-      <input onChange={(e) => setInput(e.target.value)} value={input} />
-      <button onClick={onSubmit} type="button">
-        Submit
-      </button>
-    </>
-  );
+  return <>HOME</>;
 };
 
 Home.propTypes = {};
