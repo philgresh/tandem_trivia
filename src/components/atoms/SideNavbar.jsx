@@ -9,18 +9,22 @@ const sidebarLinks = [
   },
 ];
 
-const Links = () =>
+const Links = ({ toggle }) =>
   sidebarLinks.map(({ to, title }) => (
-    <NavLink key={to} to={to} activeClassName="selected">
+    <NavLink key={to} to={to} activeClassName="selected" onClick={toggle}>
       {title}
     </NavLink>
   ));
+
+Links.propTypes = {
+  toggle: PropTypes.func.isRequired,
+};
 
 const SideNavbar = ({ open, toggle }) => {
   return (
     <>
       <div className={`sidenav ${open ? '' : 'hidden'}`} data-testid="sidenav">
-        <Links />
+        <Links toggle={toggle} />
       </div>
       <div
         className={`sidenav-background ${open ? '' : 'hidden'}`}

@@ -10,7 +10,7 @@ function App() {
       <PageContainer navBar={<Navbar />}>
         <Main>
           <Switch>
-            <Route exact path="/new-round" component={NewRound} />
+            <Route exact path="/play" component={NewRound} />
             <Route path="/" component={Home} />
           </Switch>
         </Main>

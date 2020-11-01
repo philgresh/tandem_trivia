@@ -12,17 +12,15 @@ const question = {
 
 describe('AnswerOption atom', () => {
   const thisAnswer = question.correct;
-  const correctGuess = question.correct;
-  const incorrectGuess = question.incorrect[0];
-  const idx = 0;
   const onChange = jest.fn();
 
   render(
     <AnswerOption
       answer={thisAnswer}
-      submitted={false}
-      idx={idx}
       onChange={onChange}
+      isCorrect={false}
+      submitted={false}
+      selected={false}
     />,
   );
   let answerOption = getByTestId(document.documentElement, 'answer-option');
@@ -45,9 +43,9 @@ describe('AnswerOption atom', () => {
     render(
       <AnswerOption
         answer={thisAnswer}
-        guess={correctGuess}
-        idx={idx}
         onChange={onChange}
+        submitted={false}
+        isCorrect={false}
         selected
       />,
     );
@@ -63,9 +61,8 @@ describe('AnswerOption atom', () => {
     render(
       <AnswerOption
         answer={thisAnswer}
-        guess={incorrectGuess}
-        idx={idx}
         onChange={onChange}
+        isCorrect={false}
         submitted
         selected
       />,
@@ -81,9 +78,8 @@ describe('AnswerOption atom', () => {
     render(
       <AnswerOption
         answer={thisAnswer}
-        guess={correctGuess}
-        idx={idx}
         onChange={onChange}
+        isCorrect
         submitted
         selected
       />,

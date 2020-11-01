@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Question, AnswerOption, GuessButton } from '../atoms';
+import { Question, AnswerOption, AnswerFeedback, GuessButton } from '../atoms';
 import AnswerOptions from './AnswerOptions';
 import { useQuestion } from '../logic';
 
@@ -19,11 +19,14 @@ const QuestionCard = ({ currQuestion, onSubmit, nextQuestion }) => {
         submitted={submitted}
         selected={selected}
         setSelected={setSelected}
+        correct={correct}
       />
+      <AnswerFeedback />
       <GuessButton
         onSubmit={submit}
         submitted={submitted}
         lastQuestion={lastQuestion}
+        selected={selected !== ''}
       />
     </div>
   );

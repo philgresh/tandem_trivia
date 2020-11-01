@@ -12,38 +12,85 @@ describe('GuessButton atom', () => {
     expect(button).toBeInTheDocument();
   });
 
-  test('is clickable', () => {
+  test('is not initially clickable (disabled)', () => {
     render(<GuessButton onSubmit={onSubmit} />);
     button = getByTestId(document.documentElement, 'guess-button');
     act(() => {
       button.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     });
-    expect(onSubmit).toHaveBeenCalled();
+    expect(onSubmit).not.toHaveBeenCalled();
   });
 
   test('does not initially have "submitted" or "last-question" classNames', () => {
     expect(button).not.toHaveClass('submitted');
     expect(button).not.toHaveClass('last-question');
-    expect(button).toHaveTextContent('Submit Answer');
+    expect(button).toHaveTextContent('Choose the correct answer!');
+    expect(button).toBeDisabled();
   });
 
-  test('has "submitted" classNames after submitting a guess', () => {
-    render(<GuessButton onSubmit={onSubmit} submitted />);
+  describe('has the right content given conditions', () => {
+    let submitted = false;
+    let selected = false;
+    let lastQuestion = false;
 
-    button = getByTestId(document.documentElement, 'guess-button');
+    test('is ready to submit', () => {
+      selected = true;
 
-    expect(button).toHaveClass('submitted');
-    expect(button).not.toHaveClass('last-question');
-    expect(button).toHaveTextContent('Next Question');
-  });
+      render(
+        <GuessButton
+          onSubmit={onSubmit}
+          selected={selected}
+          submitted={submitted}
+          lastQuestion={lastQuestion}
+        />,
+      );
 
-  test('has "last-question" classname after submitting the last question', () => {
-    render(<GuessButton onSubmit={onSubmit} submitted lastQuestion />);
+      button = getByTestId(document.documentElement, 'guess-button');
+      expect(button).not.toHaveClass('submitted');
+      expect(button).not.toHaveClass('last-question');
+      expect(button).toHaveTextContent('Submit');
+      expect(button).not.toBeDisabled();
+    });
 
-    button = getByTestId(document.documentElement, 'guess-button');
+    test('after submitting a guess', () => {
+      selected = false;
+      submitted = true;
+      render(
+        <GuessButton
+          onSubmit={onSubmit}
+          selected={selected}
+          submitted={submitted}
+          lastQuestion={lastQuestion}
+        />,
+      );
 
-    expect(button).toHaveClass('submitted');
-    expect(button).toHaveClass('last-question');
-    expect(button).toHaveTextContent('See results!');
+      button = getByTestId(document.documentElement, 'guess-button');
+
+      expect(button).toHaveClass('submitted');
+      expect(button).not.toHaveClass('last-question');
+      expect(button).toHaveTextContent('Next question!');
+      expect(button).not.toBeDisabled();
+    });
+
+    test('after last question', () => {
+      selected = false;
+      submitted = true;
+      lastQuestion = true;
+      render(
+        <GuessButton
+          onSubmit={onSubmit}
+          selected={selected}
+          submitted={submitted}
+          lastQuestion={lastQuestion}
+        />,
+      );
+
+      button = getByTestId(document.documentElement, 'guess-button');
+
+      expect(button).toHaveClass('submitted');
+      expect(button).toHaveClass('last-question');
+      expect(button).toHaveTextContent('See results!');
+      expect(button).not.toBeDisabled();
+    });
   });
 });
