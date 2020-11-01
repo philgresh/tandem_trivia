@@ -5,10 +5,12 @@ import AnswerOptions from './AnswerOptions';
 import { useQuestion } from '../logic';
 
 const QuestionCard = ({ currQuestion, onSubmit, nextQuestion }) => {
-  const { selected, setSelected, submit } = useQuestion(onSubmit, nextQuestion);
+  const { selected, submitted, setSelected, onClick } = useQuestion(
+    onSubmit,
+    nextQuestion,
+  );
   const { question, correct, answers } = currQuestion;
 
-  const submitted = selected !== '';
   const isCorrect = selected === correct;
   const lastQuestion = false;
 
@@ -24,7 +26,7 @@ const QuestionCard = ({ currQuestion, onSubmit, nextQuestion }) => {
       />
       <AnswerFeedback isCorrect={isCorrect} submitted={submitted} />
       <GuessButton
-        onSubmit={submit}
+        onClick={onClick}
         submitted={submitted}
         lastQuestion={lastQuestion}
         selected={selected !== ''}

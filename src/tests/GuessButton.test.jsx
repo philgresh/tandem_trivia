@@ -1,11 +1,17 @@
 import * as React from 'react';
 import { getByTestId, render, act } from '@testing-library/react';
-import { GuessButton } from '../components/atoms';
+import GuessButton, {
+  getButtonAttrs,
+  TEXT_INITIAL,
+  TEXT_READY_TO_SUBMIT,
+  TEXT_SUBMITTED,
+  TEXT_AFTER_LAST_QUESTION,
+} from '../components/atoms/GuessButton';
 
 describe('GuessButton atom', () => {
-  const onSubmit = jest.fn();
+  const onClick = jest.fn();
 
-  render(<GuessButton onSubmit={onSubmit} />);
+  render(<GuessButton onClick={onClick} />);
   let button = getByTestId(document.documentElement, 'guess-button');
 
   test('renders in the document', () => {
@@ -13,19 +19,73 @@ describe('GuessButton atom', () => {
   });
 
   test('is not initially clickable (disabled)', () => {
-    render(<GuessButton onSubmit={onSubmit} />);
+    render(<GuessButton onClick={onClick} />);
     button = getByTestId(document.documentElement, 'guess-button');
     act(() => {
       button.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     });
-    expect(onSubmit).not.toHaveBeenCalled();
+    expect(onClick).not.toHaveBeenCalled();
   });
 
   test('does not initially have "submitted" or "last-question" classNames', () => {
     expect(button).not.toHaveClass('submitted');
     expect(button).not.toHaveClass('last-question');
-    expect(button).toHaveTextContent('Choose the correct answer!');
+    expect(button).toHaveTextContent(TEXT_INITIAL);
     expect(button).toBeDisabled();
+  });
+
+  describe('getButtonAttrs functions correctly', () => {
+    let selected = false;
+    let submitted = false;
+    let lastQuestion = false;
+
+    test('initial state', () => {
+      const { disabled, text } = getButtonAttrs({
+        selected,
+        submitted,
+        lastQuestion,
+      });
+      expect(disabled).toEqual(true);
+      expect(text).toEqual(TEXT_INITIAL);
+    });
+
+    test('ready to submit', () => {
+      selected = true;
+      const { disabled, text } = getButtonAttrs({
+        selected,
+        submitted,
+        lastQuestion,
+      });
+      expect(disabled).toEqual(false);
+      expect(text).toEqual(TEXT_READY_TO_SUBMIT);
+    });
+
+    test('submitted (receive feedback)', () => {
+      selected = true;
+      submitted = true;
+
+      const { disabled, text } = getButtonAttrs({
+        selected,
+        submitted,
+        lastQuestion,
+      });
+      expect(disabled).toEqual(false);
+      expect(text).toEqual(TEXT_SUBMITTED);
+    });
+
+    test('submitted, after last question', () => {
+      selected = true;
+      submitted = true;
+      lastQuestion = true;
+
+      const { disabled, text } = getButtonAttrs({
+        selected,
+        submitted,
+        lastQuestion,
+      });
+      expect(disabled).toEqual(false);
+      expect(text).toEqual(TEXT_AFTER_LAST_QUESTION);
+    });
   });
 
   describe('has the right content given conditions', () => {
@@ -38,7 +98,7 @@ describe('GuessButton atom', () => {
 
       render(
         <GuessButton
-          onSubmit={onSubmit}
+          onClick={onClick}
           selected={selected}
           submitted={submitted}
           lastQuestion={lastQuestion}
@@ -48,16 +108,16 @@ describe('GuessButton atom', () => {
       button = getByTestId(document.documentElement, 'guess-button');
       expect(button).not.toHaveClass('submitted');
       expect(button).not.toHaveClass('last-question');
-      expect(button).toHaveTextContent('Submit');
+      expect(button).toHaveTextContent(TEXT_READY_TO_SUBMIT);
       expect(button).not.toBeDisabled();
     });
 
     test('after submitting a guess', () => {
-      selected = false;
+      selected = true;
       submitted = true;
       render(
         <GuessButton
-          onSubmit={onSubmit}
+          onClick={onClick}
           selected={selected}
           submitted={submitted}
           lastQuestion={lastQuestion}
@@ -68,17 +128,17 @@ describe('GuessButton atom', () => {
 
       expect(button).toHaveClass('submitted');
       expect(button).not.toHaveClass('last-question');
-      expect(button).toHaveTextContent('Next question!');
+      expect(button).toHaveTextContent(TEXT_SUBMITTED);
       expect(button).not.toBeDisabled();
     });
 
     test('after last question', () => {
-      selected = false;
+      selected = true;
       submitted = true;
       lastQuestion = true;
       render(
         <GuessButton
-          onSubmit={onSubmit}
+          onClick={onClick}
           selected={selected}
           submitted={submitted}
           lastQuestion={lastQuestion}
@@ -89,7 +149,7 @@ describe('GuessButton atom', () => {
 
       expect(button).toHaveClass('submitted');
       expect(button).toHaveClass('last-question');
-      expect(button).toHaveTextContent('See results!');
+      expect(button).toHaveTextContent(TEXT_AFTER_LAST_QUESTION);
       expect(button).not.toBeDisabled();
     });
   });

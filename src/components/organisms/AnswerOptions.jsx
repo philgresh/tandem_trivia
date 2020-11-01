@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { AnswerOption } from '../atoms';
 
-const AnswerOptions = ({ answers, correct, selected, setSelected }) => {
+const AnswerOptions = ({
+  answers,
+  correct,
+  selected,
+  submitted,
+  setSelected,
+}) => {
   return (
     <div className="answer-options">
       {answers.map((answer) => {
@@ -15,6 +21,7 @@ const AnswerOptions = ({ answers, correct, selected, setSelected }) => {
             isCorrect={isCorrect}
             onChange={() => setSelected(answer)}
             selected={isSelected}
+            submitted={submitted}
           />
         );
       })}
@@ -25,6 +32,7 @@ const AnswerOptions = ({ answers, correct, selected, setSelected }) => {
 AnswerOptions.propTypes = {
   answers: PropTypes.arrayOf(PropTypes.string).isRequired,
   selected: PropTypes.string.isRequired,
+  submitted: PropTypes.bool.isRequired,
   setSelected: PropTypes.func.isRequired,
   correct: PropTypes.string.isRequired,
 };

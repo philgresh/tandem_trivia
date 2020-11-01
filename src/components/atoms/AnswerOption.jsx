@@ -32,6 +32,7 @@ const AnswerOption = ({ answer, selected, isCorrect, submitted, onChange }) => {
       className={classes}
       data-testid="answer-option"
       onClick={onChange}
+      disabled={submitted}
     >
       {submitted && (
         <CorrectOrIncorrectIcon selected={selected} isCorrect={isCorrect} />

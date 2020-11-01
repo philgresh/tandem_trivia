@@ -4,30 +4,35 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Button from './Button';
 
+export const TEXT_INITIAL = 'Choose the correct answer!';
+export const TEXT_READY_TO_SUBMIT = 'Submit!';
+export const TEXT_SUBMITTED = 'Next question!';
+export const TEXT_AFTER_LAST_QUESTION = 'See results!';
+
 // |           Scenario           | selected | submitted || disabled |            text            |
 // |:----------------------------:|:--------:|:---------:||:--------:|:--------------------------:|
 // | Initial                      |   false  |   false   ||   true   | Choose the correct answer! |
 // | Ready to submit              |   true   |   false   ||   false  |           Submit!          |
-// | Submitted, received feedback |   false  |    true   ||   false  |       Next question!       |
-// | After last question          |   false  |    true   ||   false  |        See results!
+// | Submitted, received feedback |   true   |    true   ||   false  |       Next question!       |
+// | After last question          |   true   |    true   ||   false  |        See results!
 // |   (lastQuestion = true)      |          |           ||          |
 
-const getButtonAttrs = ({ selected, submitted, lastQuestion }) => {
+export const getButtonAttrs = ({ selected, submitted, lastQuestion }) => {
   let disabled = true;
-  let text = 'Choose the correct answer!';
-  if (selected) return { disabled: false, text: 'Submit!' };
+  let text = TEXT_INITIAL;
+  if (!selected) return { disabled, text };
 
+  disabled = false;
   if (submitted) {
-    disabled = false;
     if (lastQuestion) {
-      text = 'See results!';
-    } else text = 'Next question!';
-  }
+      text = TEXT_AFTER_LAST_QUESTION;
+    } else text = TEXT_SUBMITTED;
+  } else text = TEXT_READY_TO_SUBMIT;
 
   return { disabled, text };
 };
 
-const GuessButton = ({ selected, submitted, lastQuestion, onSubmit }) => {
+const GuessButton = ({ selected, submitted, lastQuestion, onClick }) => {
   const classes = clsx(
     'guess-button',
     submitted && 'submitted',
@@ -42,7 +47,7 @@ const GuessButton = ({ selected, submitted, lastQuestion, onSubmit }) => {
     <Button
       dataTestId="guess-button"
       className={classes}
-      onClick={onSubmit}
+      onClick={onClick}
       disabled={disabled}
     >
       {text}
@@ -51,7 +56,7 @@ const GuessButton = ({ selected, submitted, lastQuestion, onSubmit }) => {
 };
 
 GuessButton.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   submitted: PropTypes.bool,
   lastQuestion: PropTypes.bool,
   selected: PropTypes.bool,

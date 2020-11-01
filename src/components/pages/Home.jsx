@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useRound } from '../../logic';
+import { useRound } from '../logic';
 
 const Home = () => {
   const [input, setInput] = useState('');
