@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Navbar, Main, Footer, PageContainer } from '../../organisms';
-import Home from '../home';
+import { Navbar, Main, Footer, PageContainer } from '../organisms';
+import Home from './Home';
+import Play from './Play';
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <PageContainer navBar={<Navbar />}>
         <Main>
           <Switch>
-            <Route exact path="/new-round" />
+            <Route exact path="/play" component={Play} />
             <Route path="/" component={Home} />
           </Switch>
         </Main>

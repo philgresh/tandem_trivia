@@ -13,9 +13,9 @@ const Button = (props) => {
   return (
     <StyledButton
       styleProps={styleProps}
-      {...rest}
       data-testid={dataTestId}
       className={dataTestId}
+      {...rest}
     />
   );
 };

@@ -51,26 +51,26 @@ const useRound = (initialQuestions = []) => {
   const [currQuestion, setCurrQuestion] = useState(null);
 
   /**
-   *
-   * @param {Number} thisQuestionIdx - The current question index.
-   * @returns {Object|String} nextQuestionObj - The next question object
-   *   (or constant "ROUND_OVER" if this was the final question).
+   * Sets currQuestion to the next question object and returns
+   * lastQuestion boolean.
+   * @returns {Boolean} lastQuestion
    */
-  const nextQuestion = (thisQuestionIdx) => {
-    const nextIdx = thisQuestionIdx + 1;
-    const roundOver = nextIdx === questions.length;
-    if (roundOver) return ROUND_OVER;
+  const nextQuestion = () => {
+    const questionsAlreadyAsked = score.history.length;
+    const nextIdx = questionsAlreadyAsked;
 
     const nextQuestionObj = questions[nextIdx];
     setCurrQuestion(nextQuestionObj);
-    return nextQuestionObj;
+
+    const lastQuestion = nextIdx === questions.length - 1;
+    return lastQuestion;
   };
 
   /**
    * Fetches new questions and sets score to 0/0.
    */
-  const startNewRound = () =>
-    fetchQuestions().then((newQuestions) => {
+  const startNewRound = (numQuestions = 2) =>
+    fetchQuestions(numQuestions).then((newQuestions) => {
       setQuestions(newQuestions);
       dispatch();
       const newFirstQuestion = newQuestions[0];

@@ -1,0 +1,110 @@
+.question-card {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  margin: auto;
+  border: 1px solid #3330;
+  border-radius: 1rem;
+  padding: 1rem;
+  text-align: center;
+  -webkit-box-shadow: 0px 2px 5px 1px #3338;
+  -moz-box-shadow: 0px 2px 5px 1px #3338;
+  box-shadow: 0px 2px 5px 1px #3338;
+
+  $border-radius: 0.5rem;
+
+  & > h2.question {
+    margin-bottom: 2rem;
+  }
+
+  & .answer-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    margin-bottom: 1rem;
+
+    $backgroundcolor: #d4e6f1;
+    $correctColor: #70e360;
+    $incorrectColor: #cb4335;
+    $borderwidth: 3px;
+
+    & > button {
+      background-color: $backgroundcolor;
+      border: $borderwidth solid $backgroundcolor;
+      border-radius: $border-radius;
+      vertical-align: middle;
+      -webkit-box-shadow: 0px 2px 5px 0px #3338;
+      -moz-box-shadow: 0px 2px 5px 0px #3338;
+      box-shadow: 0px 2px 5px 0px #3338;
+      transform: perspective(1px) translateZ(0);
+      -webkit-transform: perspective(1px) translateZ(0);
+      position: relative;
+
+      &:hover {
+        background-color: darken($backgroundcolor, 0.6);
+      }
+
+      &.selected {
+        border: $borderwidth solid #64afff;
+        background-color: transparent;
+        pointer-events: none;
+        transition: 0.2s all ease-in;
+        box-shadow: 0px 1px 3px 0px #3338;
+      }
+
+      &.correct,
+      &.incorrect {
+        box-shadow: none;
+        pointer-events: none;
+        position: relative;
+      }
+
+      &.correct {
+        background-color: $correctColor;
+        border-color: $correctColor;
+      }
+
+      &.incorrect {
+        background-color: $incorrectColor;
+        border-color: $incorrectColor;
+        color: white;
+      }
+
+      & svg {
+        position: absolute;
+        left: 0;
+        margin: 0 1rem;
+      }
+    }
+
+    @include media('<=480px') {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  & .answer-feedback {
+    margin: 1rem;
+  }
+
+  & button.guess-button {
+    border-radius: $border-radius;
+    background-color: transparent;
+    -webkit-box-shadow: 0px 2px 5px 0px #3338;
+    -moz-box-shadow: 0px 2px 5px 0px #3338;
+    box-shadow: 0px 2px 5px 0px #3338;
+    color: inherit;
+
+    &:disabled {
+      background-color: #eee;
+      color: #6c6c6c;
+      box-shadow: none;
+      pointer-events: none;
+    }
+  }
+
+  @include media('<=tablet') {
+    & h2 {
+      font-size: 1.2rem;
+    }
+  }
+}
