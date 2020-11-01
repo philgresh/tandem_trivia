@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Question, AnswerOption, AnswerFeedback, GuessButton } from '../atoms';
+import { Question, AnswerFeedback, GuessButton } from '../atoms';
 import AnswerOptions from './AnswerOptions';
 import { useQuestion } from '../logic';
 
 const QuestionCard = ({ currQuestion, onSubmit, nextQuestion }) => {
   const { selected, setSelected, submit } = useQuestion(onSubmit, nextQuestion);
-  const { id, question, correct, answers } = currQuestion;
+  const { question, correct, answers } = currQuestion;
 
   const submitted = selected !== '';
+  const isCorrect = selected === correct;
   const lastQuestion = false;
 
   return (
@@ -21,7 +22,7 @@ const QuestionCard = ({ currQuestion, onSubmit, nextQuestion }) => {
         setSelected={setSelected}
         correct={correct}
       />
-      <AnswerFeedback />
+      <AnswerFeedback isCorrect={isCorrect} submitted={submitted} />
       <GuessButton
         onSubmit={submit}
         submitted={submitted}

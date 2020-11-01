@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-const useQuestion = (_onSubmit, _nextQuestion) => {
+const useQuestion = (onSubmit, nextQuestion) => {
   const [selected, setSelected] = useState('');
+  const [lastQuestion, setLastQuestion] = useState(false);
 
   const submit = () => {
     // console.log('submitting', selected);
