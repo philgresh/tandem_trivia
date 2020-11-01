@@ -1,14 +1,12 @@
 import React, { useContext } from 'react';
 import ResponseQuestion from './results/ResponseQuestion';
-import { GameContext } from '../logic/RoundContext';
+import { RoundContext } from '../logic/RoundContext';
 
 const ResultsBreakdown = () => {
-  const { gameState } = useContext(GameContext);
-
   const {
     score: { history },
     questions,
-  } = gameState;
+  } = useContext(RoundContext);
 
   const results = history.map((historyObj) => {
     const { isCorrect, questionId, guess } = historyObj;
