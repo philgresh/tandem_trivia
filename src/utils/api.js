@@ -31,12 +31,10 @@ export const fetchQuestions = async (num = 10) => {
     // Call remote API, reassign questions
   }
   const questionsWithId = questions.map((q, i) => ({ ...q, id: i }));
-  const shuffledQuestions = shuffle(questionsWithId);
+  const shuffledQuestions = shuffle(questionsWithId).slice(0, num);
   const questionsWithAnswersAdded = shuffledQuestions.map((q) => {
     const answers = addCorrectToAnswers(q);
     return { ...q, answers };
   });
-  return new Promise((resolve) =>
-    resolve(questionsWithAnswersAdded.slice(num)),
-  );
+  return new Promise((resolve) => resolve(questionsWithAnswersAdded));
 };

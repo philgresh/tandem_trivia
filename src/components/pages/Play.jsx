@@ -6,13 +6,9 @@ const Play = () => {
   const { currQuestion, makeGuess, startNewRound, nextQuestion } = useRound();
   useEffect(() => {
     startNewRound();
-    console.log('starting new round');
   }, []);
 
-  const onSubmit = (guess) => {
-    console.log('Hit submit');
-    return makeGuess(guess, currQuestion.id);
-  };
+  const onSubmit = (guess) => makeGuess(guess, currQuestion.id);
 
   if (!currQuestion) return <div>Preparing deck...</div>;
   return (

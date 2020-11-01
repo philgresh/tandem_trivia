@@ -5,14 +5,16 @@ import AnswerOptions from './AnswerOptions';
 import { useQuestion } from '../logic';
 
 const QuestionCard = ({ currQuestion, onSubmit, nextQuestion }) => {
-  const { selected, submitted, setSelected, onClick } = useQuestion(
-    onSubmit,
-    nextQuestion,
-  );
+  const {
+    selected,
+    submitted,
+    lastQuestion,
+    setSelected,
+    onClick,
+  } = useQuestion(onSubmit, nextQuestion);
   const { question, correct, answers } = currQuestion;
 
   const isCorrect = selected === correct;
-  const lastQuestion = false;
 
   return (
     <div className="question-card">
