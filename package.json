@@ -1,19 +1,19 @@
 {
-  "name": "tandem_apprenticeship",
+  "name": "tandem_trivia",
   "version": "1.0.0",
   "private": true,
   "description": "A trivia game in support of my application to Tandem's apprenticeship program",
   "main": "index.js",
-  "homepage": "https://philgresh.github.io/tandem_apprenticeship",
+  "homepage": "https://philgresh.github.io/tandem_trivia",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/philgresh/tandem_apprenticeship.git"
+    "url": "git+https://github.com/philgresh/tandem_trivia.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/philgresh/tandem_apprenticeship/issues"
+    "url": "https://github.com/philgresh/tandem_trivia/issues"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
