@@ -58,7 +58,8 @@
     "eject": "react-scripts eject",
     "precommit:test": "CI=true node_modules/.bin/react-scripts test --onlyChanged",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "test:all": "node_modules/.bin/react-scripts test --watchAll=false"
   },
   "eslintConfig": {
     "extends": [

@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# Tandem Trivia Training App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Hone your trivia skills in between rounds with coworkers!
 
-## Available Scripts
+[Live site](https://philgresh.github.io/tandem_trivia/) | [Features](#features) | [Organization](#organization) | [Styling](#styling) | [Installation](#install) | [Testing](#testing) | [Improvements/TODOs](#improvements)
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+### Immediate and encouraging feedback!
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+No sense in waiting for the end of the round to find out how you did. It's OK if you got it wrong, you'll get it the next time you see that question!
+Treat this app like flashcards and you'll have more useless knowledge lodged deep in your brain soon enough!
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![Immediate feedback screencap](https://user-images.githubusercontent.com/46543327/97824770-b34d4580-1c71-11eb-8f1b-700912865b1a.png)
 
-### `npm test`
+### Mobile friendly!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+I know that studying trivia can be stressful, so I added mobile-friendly styling to allow you to work on your memorization between train stops.
 
-### `npm run build`
+![Mobile friendly screencap](https://user-images.githubusercontent.com/46543327/97824773-b47e7280-1c71-11eb-8d51-82788e923c7f.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Calm colors!
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+...at least before you pick the wrong answer.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Calm colors screencap](https://user-images.githubusercontent.com/46543327/97824772-b3e5dc00-1c71-11eb-89cc-9545945aef85.png)
 
-### `npm run eject`
+## Technologies
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. [React](https://create-react-app.dev/) as frontend framework.
+2. [ESLint/Prettier](https://github.com/philgresh/eslint-prettier-airbnb-react) to keep things clean and tidy.
+3. [Husky](https://www.npmjs.com/package/husky) and [git-precommit-checks](https://www.npmjs.com/package/git-precommit-checks) to make sure I'm not pushing errors or debugging code.
+4. [styled-components](https://www.npmjs.com/package/styled-components) for a few components where I wanted to keep styling more dynamic.
+5. [Font Awesome](fontawesome.com/) for a little extra pop.
+6. [Jest](https://jestjs.io/) for testing.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Organization
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+I was inspired by [this article](https://medium.com/javascript-in-plain-english/how-i-structure-react-apps-a76304277786) to organize my app a little more clearly. Basic components are known as `atoms` while things that _use_ `atoms` are set up as `organisms` (I'll have to think of a better term to use). `Pages` are made out of `organisms`. Custom hooks and other pieces of logic are stored in the `src/logic` and `src/components/logic` folders.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Styling
 
-## Learn More
+I love using SASS! It's so easy to load all your styles in order and keep things organized. I stored styling sheets in `src/styles`. They're bundled together with some universal styling in `src/styles/style.scss`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Installation and running
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Install
 
-### Code Splitting
+1. Add the repository: `git@github.com:philgresh/tandem_trivia.git`
+2. Install npm modules: `npm install`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Run
 
-### Analyzing the Bundle Size
+1. Run `npm start`
+2. Open up [localhost:3000](localhost:3000)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Testing
 
-### Making a Progressive Web App
+All tests can be run using `npm run test:all`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Tests include unit tests for (almost) all "atom" components. I tried to follow test-driven development but sometimes my fingers got away from me...
 
-### Advanced Configuration
+### Improvements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Integration testing is sparse: I focused on unit tests and
+2. Accessibility isn't perfect: At time of writing, [this app scored 75](philgresh.github.io_2020-11-01_19-11-40.report.html) on accessibility on Lighthouse. I could improve screenreading capability and making it easier to use a keyboard to play.
+3. Remote database: Why not have a huge trivia database to train with! I scaffolded in the capability to fetch data from a database in `src/utils/api.js` and would probably use an AWS relational database to host data.
+4. Statistics: I'd love to implement stats between players! Imagine your joy when you see "You answered correctly 3 questions more on average than other players!"

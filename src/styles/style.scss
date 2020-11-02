@@ -2,19 +2,6 @@ $background-white: #fffdfc;
 $normal-color: #333;
 $theme-color: #7a9c8a;
 
-@import './normalize.scss';
-@import './_mixins.scss';
-@import './_media.scss';
-@import './page-container.scss';
-@import './navbar.scss';
-@import './main.scss';
-@import './question-card.scss';
-@import './footer.scss';
-@import './sidenavbar.scss';
-@import './atoms.scss';
-@import './results.scss';
-@import './home.scss';
-
 body {
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
   background-color: $background-white;
@@ -40,3 +27,16 @@ button {
   border: none;
   cursor: pointer;
 }
+
+@import './normalize.scss';
+@import './_mixins.scss';
+@import './_media.scss';
+@import './page-container.scss';
+@import './navbar.scss';
+@import './main.scss';
+@import './question-card.scss';
+@import './footer.scss';
+@import './sidenavbar.scss';
+@import './atoms.scss';
+@import './results.scss';
+@import './home.scss';
