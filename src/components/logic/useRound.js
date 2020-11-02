@@ -69,8 +69,8 @@ const useRound = (initialQuestions = []) => {
   /**
    * Fetches new questions and sets score to 0/0.
    */
-  const startNewRound = (numQuestions = 2) =>
-    fetchQuestions(numQuestions).then((newQuestions) => {
+  const startNewRound = () =>
+    fetchQuestions().then((newQuestions) => {
       setQuestions(newQuestions);
       dispatch();
       const newFirstQuestion = newQuestions[0];
