@@ -11,8 +11,8 @@ const Home = () => {
       </div>
       <div className="instructions">
         We all love to play trivia but winning becomes elusive if you&apos;ve
-        never seen a question before! Test your skills and practice before the
-        next team game here!
+        never seen a question before! Test your skills and practice here before
+        the next team game!
       </div>
       <Link to="/play" className="start-playing">
         Start a New Round
