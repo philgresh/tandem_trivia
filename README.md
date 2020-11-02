@@ -31,7 +31,7 @@ I know that studying trivia can be stressful, so I added mobile-friendly styling
 2. [ESLint/Prettier](https://github.com/philgresh/eslint-prettier-airbnb-react) to keep things clean and tidy.
 3. [Husky](https://www.npmjs.com/package/husky) and [git-precommit-checks](https://www.npmjs.com/package/git-precommit-checks) to make sure I'm not pushing errors or debugging code.
 4. [styled-components](https://www.npmjs.com/package/styled-components) for a few components where I wanted to keep styling more dynamic.
-5. [Font Awesome](fontawesome.com/) for a little extra pop.
+5. [Font Awesome](https://fontawesome.com/) for a little extra pop.
 6. [Jest](https://jestjs.io/) for testing.
 
 ## Organization
@@ -60,7 +60,7 @@ All tests can be run using `npm run test:all`
 
 Tests include unit tests for (almost) all "atom" components. I tried to follow test-driven development but sometimes my fingers got away from me...
 
-### Improvements
+## Improvements
 
 1. Integration testing is sparse: I focused on unit tests and
 2. Accessibility isn't perfect: At time of writing, [this app scored 75](philgresh.github.io_2020-11-01_19-11-40.report.html) on accessibility on Lighthouse. I could improve screenreading capability and making it easier to use a keyboard to play.
