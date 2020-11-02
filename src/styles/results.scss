@@ -60,6 +60,7 @@ $incorrect-color: #ca0000;
       & > .response-question {
         margin-bottom: 0.5rem;
         font-weight: bold;
+        text-align: left;
 
         &.correct {
           color: $correct-color;

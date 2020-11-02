@@ -1,0 +1,45 @@
+.home {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+  padding-bottom: 2rem;
+
+  & > h1 {
+    max-width: 400px;
+    margin: 0 auto 2rem auto;
+  }
+
+  & .quotation {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+
+    & > .quote {
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    & > .author {
+      margin-left: 1rem;
+    }
+  }
+
+  & > .instructions {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+  }
+
+  & > a.start-playing {
+    color: inherit;
+    font-weight: bold;
+    border: 1px solid darkgray;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 2rem;
+    text-decoration: none;
+
+    &:hover {
+      background-color: lightgray;
+    }
+  }
+}
