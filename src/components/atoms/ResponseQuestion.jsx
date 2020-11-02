@@ -1,14 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CorrectOrIncorrectIcon from '../CorrectOrIncorrectIcon';
 
 const ResponseQuestion = ({ question, isCorrect }) => {
-  return (
-    <div className="response-question">
-      <CorrectOrIncorrectIcon isCorrect={isCorrect} />
-      {question}
-    </div>
-  );
+  const className = `response-question ${isCorrect ? 'correct' : 'incorrect'}`;
+  return <div className={className}>{question}</div>;
 };
 
 ResponseQuestion.propTypes = {

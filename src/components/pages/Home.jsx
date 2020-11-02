@@ -1,14 +1,6 @@
-import React, { useState } from 'react';
-import { useRound } from '../logic';
+import React from 'react';
 
 const Home = () => {
-  const [input, setInput] = useState('');
-  const { makeGuess, startNewRound, score, currQuestion } = useRound();
-
-  const onSubmit = () => {
-    makeGuess(input, currQuestion.id);
-  };
-
   return <>HOME</>;
 };
 
