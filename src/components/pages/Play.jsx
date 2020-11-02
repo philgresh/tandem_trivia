@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { QuestionCard } from '../organisms';
-import { useRound } from '../logic';
+import { RoundContext } from '../logic/RoundContext';
 
 const Play = () => {
-  const { currQuestion, makeGuess, startNewRound, nextQuestion } = useRound();
+  const useRound = useContext(RoundContext);
+  const { currQuestion, makeGuess, startNewRound, nextQuestion } = useRound;
+
   useEffect(() => {
     startNewRound();
   }, []);

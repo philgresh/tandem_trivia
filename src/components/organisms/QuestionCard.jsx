@@ -17,7 +17,7 @@ const QuestionCard = ({ currQuestion, onSubmit, nextQuestion }) => {
   const isCorrect = selected === correct;
 
   return (
-    <div className="question-card">
+    <div className="question-card card">
       <Question question={question} />
       <AnswerOptions
         answers={answers}

@@ -1,0 +1,83 @@
+$correct-color: green;
+$incorrect-color: #ca0000;
+
+.results {
+  & > .scoreboard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+
+    & > .correct,
+    & > .incorrect {
+      text-align: center;
+
+      & > span {
+        font-size: 1.5rem;
+        font-weight: bold;
+        display: block;
+      }
+    }
+
+    & > .correct {
+      color: $correct-color;
+    }
+
+    & > .incorrect {
+      color: $incorrect-color;
+    }
+  }
+
+  & .responses-board {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    & > .response {
+      margin-bottom: 0.25rem;
+      padding: 0.25rem;
+      position: relative;
+      padding-left: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      & > svg {
+        position: absolute;
+        left: 0;
+        margin: 0.15rem;
+        color: inherit;
+
+        &.correct {
+          color: $correct-color;
+        }
+
+        &.incorrect {
+          color: $incorrect-color;
+        }
+      }
+
+      & > .response-question {
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+
+        &.correct {
+          color: $correct-color;
+        }
+
+        &.incorrect {
+          color: $incorrect-color;
+        }
+
+        & > span {
+          margin-left: 2.5rem;
+          font-weight: bold;
+        }
+      }
+
+      & > .response-guess {
+        text-align: left;
+      }
+    }
+  }
+}
