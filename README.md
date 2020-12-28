@@ -62,7 +62,7 @@ Tests include unit tests for (almost) all "atom" components. I tried to follow t
 
 ## Improvements
 
-1. Integration testing is sparse: I focused on unit tests and
+1. Integration testing is sparse: I focused on unit tests.
 2. Accessibility isn't perfect: At time of writing, [this app scored 75](philgresh.github.io_2020-11-01_19-11-40.report.html) on accessibility on Lighthouse. I could improve screenreading capability and making it easier to use a keyboard to play.
 3. Remote database: Why not have a huge trivia database to train with! I scaffolded in the capability to fetch data from a database in `src/utils/api.js` and would probably use an AWS relational database to host data.
 4. Statistics: I'd love to implement stats between players! Imagine your joy when you see "You answered correctly 3 questions more on average than other players!"
